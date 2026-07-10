@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Белла — Таро и руны, метод Хадакена</title>
+<style>
+  :root {
+    --bg: #faf6ec;
+    --bg-alt: #f1e9d6;
+    --text: #332b24;
+    --text-dim: #6e6255;
+    --accent: #157a5b;
+    --accent-soft: #4ea589;
+    --line: rgba(51,43,36,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1100px 620px at 10% -8%, rgba(78,165,137,0.30), transparent 60%),
+      radial-gradient(950px 560px at 100% 2%, rgba(210,178,110,0.20), transparent 58%),
+      radial-gradient(1050px 760px at 50% 110%, rgba(21,122,91,0.18), transparent 62%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250,246,236,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; padding-bottom: 16px;
+  }
+  .brand { font-family: Georgia, serif; font-size: 20px; letter-spacing: 0.03em; }
+  .brand span { color: var(--accent); }
+  header a.tg-link {
+    font-size: 14px; text-decoration: none; color: var(--text-dim);
+    border: 1px solid var(--line); padding: 8px 16px; border-radius: 999px;
+    transition: all .25s ease;
+  }
+  header a.tg-link:hover { color: #faf6ec; background: var(--accent); border-color: var(--accent); }
+
+  section { padding: 116px 0; border-bottom: none; position: relative; }
+  section h2 { font-size: clamp(27px, 4vw, 40px); line-height: 1.22; margin-bottom: 10px; }
+  section:not(:last-of-type)::before {
+    content: ""; position: absolute; left: 15%; right: 15%; bottom: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line) 22%, var(--accent-soft) 50%, var(--line) 78%, transparent);
+  }
+  section:not(:last-of-type)::after {
+    content: "✦"; position: absolute; left: 50%; bottom: -9px; transform: translateX(-50%);
+    color: var(--accent-soft); font-size: 14px; line-height: 1;
+  }
+
+  .hero { padding-top: 100px; padding-bottom: 100px; text-align: left; }
+  .hero-flex { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .hero-text { flex: 1 1 300px; min-width: 260px; order: 1; }
+  .hero-art { flex: none; margin: 0 auto; order: 2; }
+  .hero-photo {
+    width: 320px;
+    max-width: 60vw;
+    height: 460px;
+    max-height: 60vh;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 45px rgba(51,43,36,0.18);
+    display: block;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5.5vw, 50px);
+    line-height: 1.18;
+    max-width: 16ch;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero p.sub {
+    margin-top: 24px;
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 48ch;
+  }
+  .cta-fallback {
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: var(--text-dim);
+  }
+  .cta-fallback b { color: var(--accent); }
+
+  .cta-btn {
+    display: inline-block;
+    margin-top: 36px;
+    padding: 17px 38px;
+    background: var(--accent);
+    color: #faf6ec;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(51,43,36,0.22), inset 0 1px 0 rgba(255,255,255,0.22);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(51,43,36,0.30), inset 0 1px 0 rgba(255,255,255,0.28); }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  section.alt { background: rgba(241,233,214,0.68); }
+
+  .offer-grid {
+    display: grid;
+    gap: 28px;
+    margin-top: 40px;
+  }
+  .offer-item {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px 24px 24px 22px;
+    box-shadow: 0 8px 22px rgba(51,43,36,0.08);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .offer-item:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(51,43,36,0.14); }
+  .offer-item h3 { font-size: 19px; margin-bottom: 8px; }
+  .offer-item p { color: var(--text-dim); font-size: 15.5px; }
+
+  .trust-list { margin-top: 32px; display: grid; gap: 20px; }
+  .trust-item { display: flex; gap: 16px; align-items: flex-start; }
+  .trust-mark {
+    flex: none; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-top: 9px;
+  }
+  .trust-item p { color: var(--text-dim); font-size: 15.5px; }
+
+  .price-cards {
+    margin-top: 40px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .price-cards { grid-template-columns: 1fr 1fr; }
+  }
+  .price-card {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 8px 22px rgba(51,43,36,0.08);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(51,43,36,0.14); }
+  .price-card.featured { border-color: var(--accent); }
+  .price-card .amount { font-size: 32px; font-family: Georgia, serif; margin: 12px 0; color: var(--accent); }
+  .price-card ul { margin-top: 16px; padding-left: 18px; color: var(--text-dim); font-size: 14.5px; }
+  .price-card li { margin-bottom: 8px; }
+
+  .final-cta { text-align: center; padding: 110px 0; }
+  .final-cta h2 { font-size: clamp(26px, 4.5vw, 36px); max-width: 22ch; margin: 0 auto; }
+  .final-cta p.sub { margin-top: 18px; color: var(--text-dim); }
+
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-dim); font-size: 13px; }
+
+  .reveal { opacity: 1; transform: none; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Арабелла Бишоп <span>·</span> Белла</div>
+    <a class="tg-link" href="https://vk.ru/arabellabishop">Написать в ВКонтакте</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap reveal">
+    <div class="hero-flex">
+      <div class="hero-text">
+        <span class="eyebrow">Таро + руны · метод Хадакена</span>
+        <h1>Запутались в чувствах, выборе или тревожных знаках?</h1>
+        <p class="sub">Таро показывает скрытую картину ситуации и чувств. Руны дают прямой, чёткий совет — что делать. Вместе, по методу Хадакена, они дают <span class="accent">понятный план действий</span>.</p>
+        <a class="cta-btn" href="https://vk.ru/arabellabishop">Написать в ВКонтакте</a>
+      </div>
+      <div class="hero-art">
+        <img src="rune-stone.jpg" alt="Камень с руной, мох, папоротник и солнечный свет" class="hero-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="eyebrow">С чем чаще всего приходят</span>
+    <h2>Возможно, вы узнаете себя</h2>
+    <div class="trust-list">
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>«Думает ли он обо мне? Напишет ли? Ждать или отпустить?»</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>«Стоит ли менять работу, вкладываться? Будет ли доход, если решусь?»</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>«Посмотрите меня (и близких) на негатив — что-то идёт не так последнее время».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap reveal">
+    <span class="eyebrow">Что вы получаете</span>
+    <h2>Один расклад — полная ясность</h2>
+      <figure style="margin:1.8rem auto 0;max-width:620px;text-align:center;"><img src="rasklad-zakrytyy.jpg" alt="Так выглядит расклад: таро и руны рубашками вверх" style="width:100%;height:auto;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.28);display:block;"><figcaption style="margin-top:.7rem;font-size:.92rem;opacity:.75;">Так выглядит ваш расклад — таро и руны вместе</figcaption></figure>
+    <div class="offer-grid">
+      <div class="offer-item">
+        <h3>Понятный результат</h3>
+        <p>Вы будете точно знать, что происходит на самом деле, и получите конкретный план — что делать дальше.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Срок 2–3 дня</h3>
+        <p>Разбор приходит текстом, подробно: ситуация → что показывают карты и руны → совет.</p>
+      </div>
+      <div class="offer-item">
+        <h3>1 вопрос — 1 тема</h3>
+        <p>Плюс бонусный уточняющий вопрос в течение 3 дней после разбора — отдельно, без доплаты.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Честно, без давления</h3>
+        <p>Расклад — не приговор, а карта вероятностей. Вы сами творите свою судьбу и можете её менять.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="eyebrow">Почему можно доверять</span>
+    <h2>Опыт, а не спешка</h2>
+    <div class="trust-list">
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>~30 лет с картами и рунами — с детской колоды, вырезанной из старой книги, до серьёзной учёбы.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>Школа рун «Мир Рун» — три мастера: Рунава, Серый Ангел и Эриния.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>Метод Хадакена изначально создан для рун — я переложила его на таро и работаю в связке таро+руны. Каждый расклад пишу сама, вдумчиво, под вашу ситуацию — не под копирку.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-mark"></div>
+        <p>Беру ограниченное число раскладов в неделю, чтобы вникнуть в каждую ситуацию, а не проработать быстро.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap reveal">
+    <span class="eyebrow">Цена</span>
+    <h2>Честно и открыто, без сюрпризов</h2>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="eyebrow" style="margin-bottom:4px;">Базовый</div>
+        <div class="amount">2 500 ₽</div>
+        <ul>
+          <li>1 вопрос / 1 тема</li>
+          <li>Разбор таро + руны текстом</li>
+          <li>Срок 2–3 дня</li>
+          <li>1 бонусный уточняющий вопрос (3 дня)</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="eyebrow" style="margin-bottom:4px;">Расширенный</div>
+        <div class="amount">4 000 ₽</div>
+        <ul>
+          <li>Дополнительный вопрос/тема</li>
+          <li>Вторая колода для перепроверки</li>
+          <li>На выбор: рекомендация става/оберега под ситуацию — или разбор двух сценариев «если да / если нет»</li>
+          <li>Срок 2–3 дня</li>
+          <li>1 бонусный уточняющий вопрос (3 дня)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap reveal">
+    <h2>Готовы узнать, что происходит на самом деле?</h2>
+    <p class="sub">Напишите вопрос — и получите понятный ответ.</p>
+    <a class="cta-btn" href="https://vk.ru/arabellabishop">Написать в ВКонтакте</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Белла (Арабелла Бишоп) · Таро и руны · метод Хадакена</div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var items = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { io.observe(el); });
+  });
+</script>
+
+</body>
+</html>
