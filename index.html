@@ -163,7 +163,7 @@
   }
   .price-card {
     background: rgba(255,255,255,0.6);
-    border: 1px solid var(--line);
+    border: 1.5px solid rgba(51,43,36,0.22);
     border-radius: 12px;
     padding: 28px;
     box-shadow: 0 8px 22px rgba(51,43,36,0.08);
@@ -180,6 +180,21 @@
   .final-cta p.sub { margin-top: 18px; color: var(--text-dim); }
 
   footer { padding: 40px 0 60px; text-align: center; color: var(--text-dim); font-size: 13px; }
+  .social-row {
+    display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .social-link {
+    display: inline-block;
+    font-size: 13.5px;
+    text-decoration: none;
+    color: var(--text-dim);
+    border: 1px solid var(--line);
+    padding: 9px 18px;
+    border-radius: 999px;
+    transition: all .25s ease;
+  }
+  .social-link:hover { color: #faf6ec; background: var(--accent); border-color: var(--accent); }
 
   .reveal { opacity: 1; transform: none; }
   .reveal.is-visible { opacity: 1; transform: none; }
@@ -321,7 +336,14 @@
 </section>
 
 <footer>
-  <div class="wrap">Белла (Арабелла Бишоп) · Таро и руны · метод Хадакена</div>
+  <div class="wrap">
+    <div class="social-row">
+      <a class="social-link" href="https://t.me/arabella_taro_i_runy" target="_blank" rel="noopener">Telegram-канал</a>
+      <a class="social-link" href="https://vk.com/arabella_taro_i_runy" target="_blank" rel="noopener">Группа ВКонтакте</a>
+      <a class="social-link" href="https://ok.ru/group/70000053589443" target="_blank" rel="noopener">Одноклассники</a>
+    </div>
+    Белла (Арабелла Бишоп) · Таро и руны · метод Хадакена
+  </div>
 </footer>
 
 <script>
