@@ -57,6 +57,8 @@
   .header-links { display: flex; gap: 10px; flex-wrap: wrap; }
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .cta-row .cta-btn { margin-top: 0; }
+  .price-card .cta-row { flex-direction: column; }
+  .price-card .cta-row .cta-btn { width: 100%; text-align: center; }
 
   section { padding: 116px 0; border-bottom: none; position: relative; }
   section h2 { font-size: clamp(27px, 4vw, 40px); line-height: 1.22; margin-bottom: 10px; }
@@ -70,13 +72,14 @@
   }
 
   .hero { padding-top: 100px; padding-bottom: 100px; text-align: left; }
-  .hero-flex { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .hero-flex { display: flex; align-items: stretch; gap: 32px; flex-wrap: wrap; }
   .hero-text { flex: 1 1 300px; min-width: 260px; order: 1; }
-  .hero-art { flex: none; margin: 0 auto; order: 2; }
+  .hero-art { flex: none; margin: 0 auto; order: 2; display: flex; }
   .hero-photo {
     width: 320px;
     max-width: 60vw;
-    height: 460px;
+    height: 100%;
+    min-height: 320px;
     max-height: 60vh;
     object-fit: cover;
     border-radius: 16px;
